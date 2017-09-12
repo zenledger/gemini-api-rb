@@ -1,17 +1,17 @@
-require 'bitfinex-api-rb'
+require 'gemini-api-rb'
 
 # Configure the client with the proper KEY/SECRET, you can create a new one from:
-# https://www.bitfinex.com/api
-Bitfinex::Client.configure do |conf|
-  conf.api_key = ENV["BFX_KEY"]
-  conf.secret  = ENV["BFX_SECRET"]
-  conf.websocket_api_endpoint = "wss://api.bitfinex.com/ws"
+# https://api.gemini.com
+Gemini::Client.configure do |conf|
+  conf.api_key = ENV["GEMINI_KEY"]
+  conf.secret  = ENV["GEMINI_SECRET"]
+  conf.websocket_api_endpoint = "wss://api.gemini.com/ws"
 end
 
-client = Bitfinex::Client.new
+client = Gemini::Client.new
 pair = "ETHUSD"
 
-# Documentation: https://bitfinex.readme.io/reference#ws-public-ticker
+# Documentation: https://gemini.readme.io/reference#ws-public-ticker
 #
 # Array comes with the following values:
 #  1  BID   float   Price of last highest bid
@@ -30,5 +30,5 @@ client.listen_ticker(pair) do |tick|
   puts "Last Price: #{tick[7]}\t High: #{tick[9]}\t Low: #{tick[10]}"
 end
 
-puts "Bitfinex Ticker Price for #{pair}:"
+puts "Gemini Ticker Price for #{pair}:"
 client.listen!

@@ -1,17 +1,17 @@
-require_relative '../lib/bitfinex-api-rb.rb'
+require_relative '../lib/gemini-api-rb.rb'
 
 # Configure the client with the proper KEY/SECRET, you can create a new one from:
-# https://www.bitfinex.com/api
-Bitfinex::Client.configure do |conf|
-  conf.api_key = ENV["BFX_KEY"]
-  conf.secret  = ENV["BFX_SECRET"]
+# https://api.gemini.com
+Gemini::Client.configure do |conf|
+  conf.api_key = ENV["GEMINI_KEY"]
+  conf.secret  = ENV["GEMINI_SECRET"]
   #conf.debug_connection = true
   # this helper set the API version 2
   conf.use_api_v2
 end
 
 # Initialize the client
-client = Bitfinex::Client.new
+client = Gemini::Client.new
 
 # Get wallet informations
 wallets = client.wallets
