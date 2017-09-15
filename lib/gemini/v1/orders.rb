@@ -7,15 +7,12 @@ module Gemini
     # @param type [string] Either “market” / “limit” / “stop” / “trailing-stop” / “fill-or-kill” / “exchange market” / “exchange limit” / “exchange stop” / “exchange trailing-stop” / “exchange fill-or-kill”. (type starting by “exchange ” are exchange orders, others are margin trading orders)
     # @param side [string] Either “buy” or “sell”
     # @param price [decimal] Price to buy or sell at. Must be positive. Use random number for market orders.
-    # @param params :is_hidden [bool] (optional) true if the order should be hidden. Default is false
-    # @param params :is_postonly [bool] (optional) true if the order should be post only. Default is false. Only relevant for limit orders
-    # @param params :ocoorder [bool] Set an additional STOP OCO order that will be linked with the current order
-    # @param params :buy_price_oco [decimal] If ocoorder is true, this field represent the price of the OCO stop order to place
+    # @param params :options [array] (optional) array of at most one limit order options: "maker-or-cancel" / "immediate-or-cancel" / "auction-only"
     # @return [Hash]
     # @example:
     #   client.new_order("usdbtc", 100, "market", "sell", 0)
     def new_order(symbol, amount, type, side, price = nil, params = {})
-      check_params(params, %i{is_hidden is_postonly ocoorder buy_price_oco})
+      check_params(params, %i{options})
 
       # for 'market' order, we need to pass a random positive price, not nil
       price ||= 0.001 if type == "market" || type == "exchange market"

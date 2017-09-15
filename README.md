@@ -8,7 +8,6 @@
 * REST API version 2
 * WebSockets API version 2
 
-
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -34,11 +33,6 @@ Gemini::Client.configure do |conf|
   # add `secret` and `api_key` if you need to access authenticated endpoints.
   conf.secret = ENV["GEMINI_API_SECRET"]
   conf.api_key = ENV["GEMINI_API_KEY"]
-
-  # uncomment if you want to use version 2 of the API
-  # which is opt-in at the moment
-  #
-  # conf.use_api_v2
 end
 ```
 
