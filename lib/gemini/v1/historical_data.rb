@@ -49,5 +49,10 @@ module Gemini
       params.merge!({symbol: symbol})
       authenticated_post("mytrades", params: params).body
     end
+
+    def transfers(params={})
+      check_params(params, %i{timestamp limit_transfers})
+      authenticated_post("transfers", params: params).body
+    end
   end
 end
