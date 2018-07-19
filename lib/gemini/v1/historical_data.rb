@@ -50,9 +50,15 @@ module Gemini
       authenticated_post("mytrades", params: params).body
     end
 
-    def transfers(params={})
-      check_params(params, %i{timestamp limit_transfers})
-      authenticated_post("transfers", params: params).body
+    # View your past deposit/withdrawls.
+    # @param params :timestamp [time] (optional) Trades made before this timestamp won’t be returned
+    # @param params :limit_transfers [int] Limit the number of trades returned. Default is 50.
+    # @return [Array]
+    # @example:
+    #   client.transfers
+    def transfers(params = {})
+      check_params(params, %i[timestamp limit_transfers])
+      authenticated_post('transfers', params: params).body
     end
   end
 end
