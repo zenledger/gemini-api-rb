@@ -14,7 +14,7 @@ module Gemini
       end
 
       def config
-        @configuration ||= Configuration.new
+        @configuration = Configuration.new
       end
     end
   end
